@@ -12,5 +12,12 @@
   "dependencies": {
     "express": "^4.13.4",
     "nightmare": "^2.2.0"
-  }
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/Khafang/harrypotterbookstore.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "young-cove-4302.herokuapp.com"
 }
