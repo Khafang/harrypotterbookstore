@@ -1,0 +1,81 @@
+<html ng-app="todoApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Harry Potter Shop</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./todo.js"></script>
+</head>
+
+<body ng-controller="todoController">
+    <div class="wrapper">
+        <div class="header">
+            ร้านนายจิณณวัตร
+        </div>
+        <div class="body-blankspace-left-right"></div>
+        <div class="body-wrapper">
+            <div class="body-product">
+                <div class="box-search">
+                    <input type="text" class="input-search" ng-model="searchText" placeholder="ค้นหาหนังสือ">
+                    <div class="button-search"><span class="glyphicon glyphicon-search"></span></div>
+                </div>
+                <div class="box-all-products">
+                    <table>
+                        <tr ng-repeat="data in books | filter:searchText" ng-click="addBook($index)" id="harry{{$index+1}}">
+                            <td>
+                                <img ng-src="/dist/img/{{data.img}}">
+                            </td>
+                            <td colspan="3">
+                                <span>
+                                {{data.name}}<br>
+                                <h1>ราคา : {{data.price}} บาท</h1>
+                            </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="body-list">
+                <div class="box-list-product">
+                    <table>
+                        <tbody>
+                            <tr ng-repeat="data in selectedBooks track by $index" ng-click="deleteBook($index)">
+                                <td ng-if="data.amount !== 0">
+                                    <img ng-src="/dist/img/{{data.img}}">
+                                </td>
+                                <td ng-if="data.amount !== 0">
+                                    <span>
+                                {{data.name}}<br>
+                                <h1>ราคา : {{data.price}} บาท</h1>
+                            </span>
+                                </td>
+                                <td ng-if="data.amount !== 0">
+                                    <h1>({{data.amount}})</h1>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="line-inList"></div>
+                <div class="box-show-price">
+                    <div class="text-detailPrice">Subtotal : {{subtotal}}</div>
+                    <div class="text-detailPrice">Discount : {{discount}}</div>
+                    <div class="text-totalPrice">
+                        Total ({{amoutBooks}}) : <span id="totalPrice">{{total}}</span>
+                    </div>
+                    <div>
+                        <button class="button-clear" ng-click="clear()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body-blankspace-left-right"></div>
+    </div>
+</body>
+
+</html>
